@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+		a{
+			margin: 10px;
+
+		}
+		#bigimage{
+			padding: 10px;
+			background-color: #d3d3d3;
+			border: 1px solid #BFBFBF;
+			position: absolute;
+		}
+
+	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			var offsetX=20;
+			var offsetY=10;
+			var href;
+			$('a').hover(function(e){
+				href = $(this).attr('href');
+				$('<img src = "' + href+'" id = "bigimage" />')
+				.css('left',e.pageX + offsetX)
+				.css('top',e.pageY + offsetY)
+				.appendTo('body')
+				.hide()
+				.fadeIn(1000);
+			},function(){
+				$('#bigimage').remove();
+
+			});
+			$('a').mousemove(function(e){
+				$('#bigimage')
+				.css('left',e.pageX + offsetX)
+				.css('top',e.pageY + offsetY)
+
+			});
+
+		});
+	</script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Robin Rajput</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://www.instagram.com/robin_raajput">Instagram </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<a href="{% static 'product-back.png' %}" ><img src="{% static 'product-back.png' %}" width="250px" height="250px"/></a>
+
+<a href="{% static 'portflio-front.png' %}"><img src="{% static 'portflio-front.png' %}" width="250px" height="250px"/></a>
+
+<a href="{% static 'word-back.png' %}"><img src="{% static 'word-back.png' %}" width="250px" height="250px"/></a>
+
+</body>
+</html>
